@@ -16,7 +16,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:9.5
+        image: postgres:16
         env:
           POSTGRES_DB: klaxon_test
           POSTGRES_USER: klaxon-test-user
@@ -26,12 +26,18 @@ jobs:
 
     steps:
       - name: Checkout the project
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
 
       - name: Compile assets
         run: bundle exec rake assets:precompile assets:clean
