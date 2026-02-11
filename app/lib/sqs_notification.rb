@@ -1,5 +1,10 @@
 class SqsNotification
   def self.perform(queue_url, payload)
+    unless Rails.env.production?
+      puts "[dev] Skipping SQS notification to #{queue_url}: #{payload.to_json}"
+      return true
+    end
+
     client = Aws::SQS::Client.new(
       access_key_id: ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"],
       secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"],
