@@ -31,7 +31,6 @@ group :development, :test do
   gem "guard-rspec", require: false
   gem "factory_bot_rails", "~> 6.5"
   gem "database_cleaner"
-  gem "sinatra"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false

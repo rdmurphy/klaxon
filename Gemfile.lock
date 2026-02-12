@@ -232,8 +232,6 @@ GEM
     msgpack (1.8.0)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
-    mustermann (3.0.0)
-      ruby2_keywords (~> 0.0.1)
     mutex_m (0.3.0)
     nenv (0.3.0)
     net-imap (0.6.2)
@@ -288,9 +286,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.21)
-    rack-protection (3.2.0)
-      base64 (>= 0.1.0)
-      rack (~> 2.2, >= 2.2.4)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.2.0)
@@ -398,7 +393,6 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
-    ruby2_keywords (0.0.5)
     sass-embedded (1.97.3-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.97.3-arm64-darwin)
@@ -412,11 +406,6 @@ GEM
     simple_form (5.4.1)
       actionpack (>= 7.0)
       activemodel (>= 7.0)
-    sinatra (3.2.0)
-      mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.2.0)
-      tilt (~> 2.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -428,7 +417,6 @@ GEM
     terser (1.2.6)
       execjs (>= 0.3.0, < 3)
     thor (1.5.0)
-    tilt (2.3.0)
     timeout (0.6.0)
     tsort (0.2.0)
     tzinfo (2.0.6)
@@ -486,7 +474,6 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails-omakase
   simple_form (~> 5.4)
-  sinatra
   sprockets-rails
   terser (~> 1.2)
   web-console
