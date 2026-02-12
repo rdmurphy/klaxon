@@ -365,9 +365,9 @@ GEM
       google-protobuf (~> 4.31)
     securerandom (0.4.1)
     shellany (0.0.1)
-    simple_form (5.3.1)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
+    simple_form (5.4.1)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     sinatra (3.2.0)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -435,7 +435,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-github
   rspec-rails
-  simple_form (~> 5.3)
+  simple_form (~> 5.4)
   sinatra
   sprockets-rails
   terser (~> 1.2)
