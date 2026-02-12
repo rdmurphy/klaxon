@@ -4,7 +4,7 @@ ruby '3.2.10'
 gem "rails", '~> 7.1.0'
 gem 'pg', '~> 1.6'
 gem "sprockets-rails"
-gem "dartsass-rails", "~> 0.5.0"
+gem "dartsass-rails", "~> 0.5.1"
 gem "terser", "~> 1.2"
 
 gem 'dotenv'
