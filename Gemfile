@@ -32,6 +32,9 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.5'
   gem 'database_cleaner'
   gem 'sinatra'
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
 end
 
 group :test do
