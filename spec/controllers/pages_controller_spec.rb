@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe PagesController, type: :controller do
-
   # # This should return the minimal set of attributes required to create a valid
   # # Page. As you add validations to Page, be sure to
   # # adjust the attributes here as well.
@@ -155,5 +154,4 @@ RSpec.describe PagesController, type: :controller do
   #     expect(response).to redirect_to(pages_url)
   #   end
   # end
-
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ApiController, type: :controller do
-
   before(:each) {
     WebMock.allow_net_connect!
     login
@@ -9,7 +8,6 @@ RSpec.describe ApiController, type: :controller do
 
   describe "/page-preview" do
     it "can query the tmp homepage" do
-
       url = 'https://www.themarshallproject.org'
       css_selector = 'header'
 
@@ -54,5 +52,4 @@ RSpec.describe ApiController, type: :controller do
   it "has stats"
   it "has subscriptions"
   it "has pages"
-
 end

@@ -13,7 +13,7 @@ RSpec.describe SlackIntegration, type: :model do
     expect(change.after.page).to eq page
 
     payload = slack.send_notification(change)
-    expect(payload[:icon_url]).to start_with  'http'
+    expect(payload[:icon_url]).to start_with 'http'
     expect(payload[:icon_url]).to include '/images/klaxon-logo'
     expect(payload[:channel]).to eq slack.channel
     expect(payload[:username]).to include "Klaxon"

@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe PagesController, type: :routing do
   describe "routing" do
-
     # it "routes to #index" do
     #   expect(:get => "/pages").to route_to("pages#index")
     # end
@@ -34,6 +33,5 @@ RSpec.describe PagesController, type: :routing do
     # it "routes to #destroy" do
     #   expect(:delete => "/pages/1").to route_to("pages#destroy", :id => "1")
     # end
-
   end
 end

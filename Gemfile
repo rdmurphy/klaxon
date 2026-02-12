@@ -1,37 +1,37 @@
-source 'https://rubygems.org'
-ruby '3.2.10'
+source "https://rubygems.org"
+ruby "3.2.10"
 
-gem "rails", '~> 7.1.0'
-gem 'pg', '~> 1.6'
+gem "rails", "~> 7.1.0"
+gem "pg", "~> 1.6"
 gem "sprockets-rails"
 gem "dartsass-rails", "~> 0.5.1"
 gem "terser", "~> 1.2"
 
-gem 'dotenv'
-gem 'jquery-rails'
-gem 'bootsnap', require: false
+gem "dotenv"
+gem "jquery-rails"
+gem "bootsnap", require: false
 
-gem 'puma', '~> 6.6'
+gem "puma", "~> 6.6"
 
-gem 'simple_form', '~> 5.4'
+gem "simple_form", "~> 5.4"
 
-gem 'jwt'
-gem 'premailer-rails'
-gem 'httparty'
+gem "jwt"
+gem "premailer-rails"
+gem "httparty"
 
-gem 'diffy'
-gem 'kramdown'
+gem "diffy"
+gem "kramdown"
 
-gem 'aws-sdk-sqs', '~> 1.99'
+gem "aws-sdk-sqs", "~> 1.99"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'rspec-rails'
-  gem 'guard-rspec', require: false
-  gem 'factory_bot_rails', '~> 6.5'
-  gem 'database_cleaner'
-  gem 'sinatra'
+  gem "rspec-rails"
+  gem "guard-rspec", require: false
+  gem "factory_bot_rails", "~> 6.5"
+  gem "database_cleaner"
+  gem "sinatra"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
@@ -44,13 +44,13 @@ group :development, :test do
 end
 
 group :test do
-  gem 'webmock'
-  gem 'rails-controller-testing'
-  gem 'rspec-github', require: false
+  gem "webmock"
+  gem "rails-controller-testing"
+  gem "rspec-github", require: false
 end
 
 group :development do
   gem "dockerfile-rails", ">= 1.2"
-  gem 'letter_opener'
-  gem 'web-console'
+  gem "letter_opener"
+  gem "web-console"
 end

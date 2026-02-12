@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AppSetting, type: :model do
-
   it "returns false/empty if no app_setting" do
     AppSetting.where(key: 'default_host').delete_all
     expect(AppSetting.default_host_exists?).to eq false
@@ -27,5 +26,4 @@ RSpec.describe AppSetting, type: :model do
     ENV['MAILER_FROM_ADDRESS'] = "other-email"
     expect(AppSetting.mailer_from_address).to eq "other-email"
   end
-
 end

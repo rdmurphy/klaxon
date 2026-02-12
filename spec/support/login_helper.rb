@@ -1,5 +1,5 @@
 module LoginHelper
-  def login(user=nil)
+  def login(user = nil)
     user = User.where(email: 'test@test.com').first_or_create if user.nil?
     request.cookies[:user_id] = user.id
   end

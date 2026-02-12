@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PageSnapshot, type: :model do
-
   it "must have a page" do
     snapshot = PageSnapshot.new
     expect(snapshot.valid?).to be false
@@ -33,8 +32,7 @@ RSpec.describe PageSnapshot, type: :model do
     expect(snapshot5.previous).to eq snapshot4
     expect(snapshot6.previous).to eq snapshot3
 
-    expect(snapshot1.siblings).to eq [snapshot3, snapshot6]
-    expect(snapshot2.siblings).to eq [snapshot4, snapshot5]
+    expect(snapshot1.siblings).to eq [ snapshot3, snapshot6 ]
+    expect(snapshot2.siblings).to eq [ snapshot4, snapshot5 ]
   end
-
 end

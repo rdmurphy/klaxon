@@ -64,5 +64,4 @@ RSpec.describe Change, type: :model do
 
     expect(ActionMailer::Base.deliveries.length).to eq 0
   end
-
 end

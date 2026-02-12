@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe LoginToken, type: :model do
-
   before :each do
     ENV['SECRET_KEY_BASE'] = SecureRandom.hex
     @user = create(:user)
@@ -38,5 +37,4 @@ RSpec.describe LoginToken, type: :model do
     expect(result[:user]).to eq @user
     expect(result[:expired]).to eq true
   end
-
 end

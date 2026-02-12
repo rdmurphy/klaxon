@@ -46,7 +46,6 @@ class ApplicationController < ActionController::Base
       @current_user = false
     end
 
-    return @current_user
+    @current_user
   end
-
 end

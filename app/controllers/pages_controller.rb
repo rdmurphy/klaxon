@@ -1,30 +1,30 @@
 class PagesController < ApplicationController
   before_action :authorize
-  before_action :set_page, only: [:show, :edit, :update, :destroy, :latest_change, :snapshots, :setup_compare]
+  before_action :set_page, only: [ :show, :edit, :update, :destroy, :latest_change, :snapshots, :setup_compare ]
 
   def latest_change
     change = @page.latest_change
     if change
       redirect_to page_change_path(change)
     else
-      redirect_to edit_page_url(@page), notice: 'Not enough snapshots to diff.'
+      redirect_to edit_page_url(@page), notice: "Not enough snapshots to diff."
     end
   end
 
   def snapshots
-    @snapshots = @page.page_snapshots.order('created_at DESC').select(:id, :created_at, :sha2_hash)
+    @snapshots = @page.page_snapshots.order("created_at DESC").select(:id, :created_at, :sha2_hash)
   end
 
   def setup_compare
     # TODO extract this
-    snapshots = @page.page_snapshots.where(id: [params[:before], params[:after]]).order('created_at ASC').last(2) # TODO: this needs an integration test
+    snapshots = @page.page_snapshots.where(id: [ params[:before], params[:after] ]).order("created_at ASC").last(2) # TODO: this needs an integration test
     change = Change.where(before: snapshots.first, after: snapshots.last).first_or_create
     redirect_to page_change_path(change)
   end
 
   # GET /pages
   def index
-    @pages = Page.includes(:user).order('created_at DESC')
+    @pages = Page.includes(:user).order("created_at DESC")
   end
 
   # GET /pages/1
@@ -50,7 +50,7 @@ class PagesController < ApplicationController
     @page.user = current_user
 
     if @page.save
-      redirect_to pages_url, notice: 'Page was successfully created.'
+      redirect_to pages_url, notice: "Page was successfully created."
     else
       render :new
     end
@@ -59,7 +59,7 @@ class PagesController < ApplicationController
   # PATCH/PUT /pages/1
   def update
     if @page.update(page_params)
-      redirect_to pages_url, notice: 'Page was successfully updated.'
+      redirect_to pages_url, notice: "Page was successfully updated."
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   def destroy
     @page.destroy
-    redirect_to pages_url, notice: 'Page was successfully destroyed.'
+    redirect_to pages_url, notice: "Page was successfully destroyed."
   end
 
   private

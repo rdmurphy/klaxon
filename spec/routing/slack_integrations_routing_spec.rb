@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe SlackIntegrationsController, type: :routing do
   describe "routing" do
-
     # it "routes to #index" do
     #   expect(:get => "/slack_integrations").to route_to("slack_integrations#index")
     # end
@@ -34,6 +33,5 @@ RSpec.describe SlackIntegrationsController, type: :routing do
     # it "routes to #destroy" do
     #   expect(:delete => "/slack_integrations/1").to route_to("slack_integrations#destroy", :id => "1")
     # end
-
   end
 end

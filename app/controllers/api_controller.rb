@@ -18,7 +18,7 @@ class ApiController < ApplicationController
       pages_count: Page.count,
       page_snapshots_count: PageSnapshot.count,
       users_count: User.count,
-      changes_count: Change.count,
+      changes_count: Change.count
     }
   end
 
@@ -49,5 +49,4 @@ class ApiController < ApplicationController
       match_text: page.match_text
     }
   end
-
 end
