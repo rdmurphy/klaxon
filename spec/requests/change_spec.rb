@@ -5,6 +5,7 @@ RSpec.describe Change, type: :request do
 
   before(:each) do
     WebMock.allow_net_connect!
+    ENV['SECRET_KEY_BASE'] ||= SecureRandom.hex
 
     # login
     @user = User.where(email: 'test@test.com').first_or_create
@@ -19,7 +20,6 @@ RSpec.describe Change, type: :request do
 
     4.times.each do
       PollPage.perform_all
-      sleep 0.1
     end
 
     expect(page.page_snapshots.count).to eq 4 # verify we created the right number of snapshots
