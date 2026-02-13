@@ -392,6 +392,13 @@ GEM
       rubocop (>= 1.72)
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
+    rubocop-rspec (3.9.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.81)
+    rubocop-rspec_rails (2.32.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+      rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     sass-embedded (1.97.3-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
@@ -472,6 +479,8 @@ DEPENDENCIES
   rspec-github
   rspec-rails
   rubocop-rails-omakase
+  rubocop-rspec
+  rubocop-rspec_rails
   simple_form (~> 5.4)
   sprockets-rails
   terser (~> 1.2)
