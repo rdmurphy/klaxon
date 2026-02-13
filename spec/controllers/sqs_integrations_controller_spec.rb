@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe SqsIntegrationsController, type: :controller do
+RSpec.describe SqsIntegrationsController do
   # This should return the minimal set of attributes required to create a valid
   # SqsIntegration. As you add validations to SqsIntegration, be sure to
   # adjust the attributes here as well.
@@ -34,7 +34,7 @@ RSpec.describe SqsIntegrationsController, type: :controller do
     }
   }
 
-  before(:each) { login }
+  before { login }
 
   describe "GET #index" do
     it "assigns all sqs_integrations as @sqs_integrations" do

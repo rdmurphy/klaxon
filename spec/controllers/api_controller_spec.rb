@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ApiController, type: :controller do
-  before(:each) {
+RSpec.describe ApiController do
+  before {
     WebMock.allow_net_connect!
     login
   }
@@ -38,7 +38,7 @@ RSpec.describe ApiController, type: :controller do
     expect(response).to have_http_status(:success)
     data = JSON.parse(response.body)
     expect(data['url']).to eq url
-    expect(data['css_selector']).to eq nil
+    expect(data['css_selector']).to be_nil
     page = Page.find_by(url: url)
     expect(page.user).to eq @user
 

@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe SlackIntegrationsController, type: :controller do
+RSpec.describe SlackIntegrationsController do
   # This should return the minimal set of attributes required to create a valid
   # SlackIntegration. As you add validations to SlackIntegration, be sure to
   # adjust the attributes here as well.
@@ -30,7 +30,7 @@ RSpec.describe SlackIntegrationsController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  before(:each) { login }
+  before { login }
 
   describe "GET #index" do
     it "assigns all slack_integrations as @slack_integrations" do

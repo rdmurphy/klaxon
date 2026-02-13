@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "HerokuAppJSONTemplate", type: :model do
+RSpec.describe "HerokuAppJSONTemplate" do
   before :all do
     @path = File.join(Rails.root, "app.json")
   end

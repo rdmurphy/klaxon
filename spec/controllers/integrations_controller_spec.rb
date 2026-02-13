@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IntegrationsController, type: :controller do
+RSpec.describe IntegrationsController do
   describe "GET #index" do
     before (:each) { login }
 
