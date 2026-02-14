@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2019_02_23_221320) do
+ActiveRecord::Schema[7.2].define(version: 2019_02_23_221320) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "app_settings", id: :serial, force: :cascade do |t|
@@ -38,8 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2019_02_23_221320) do
 
   create_table "page_snapshots", id: :serial, force: :cascade do |t|
     t.integer "page_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "sha2_hash"
     t.text "html"
     t.string "text"
@@ -93,5 +94,4 @@ ActiveRecord::Schema[7.0].define(version: 2019_02_23_221320) do
     t.boolean "is_admin"
     t.index ["email"], name: "index_users_on_email"
   end
-
 end
