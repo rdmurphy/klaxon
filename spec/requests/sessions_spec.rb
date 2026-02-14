@@ -1,23 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe SessionsController do
-  describe "GET #new" do
+RSpec.describe "Sessions" do
+  describe "GET /login" do
     it "returns http success" do
-      get :new
+      get login_path
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "POST #create" do
+  describe "POST /login" do
     it "accepts an email for login" do
       user = create(:user)
-      post :create, params: { session: { email: user.email } }
+      post create_session_path, params: { session: { email: user.email } }
       expect(response).not_to redirect_to(unknown_user_path)
     end
 
     it "is case-insensitive when checking emails" do
       user = create(:user)
-      post :create, params: { session: { email: user.email.upcase } }
+      post create_session_path, params: { session: { email: user.email.upcase } }
       expect(response).not_to redirect_to(unknown_user_path)
     end
   end

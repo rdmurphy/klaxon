@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApiController do
+RSpec.describe "API" do
   before {
     WebMock.allow_net_connect!
     login
@@ -11,7 +11,7 @@ RSpec.describe ApiController do
       url = 'https://www.themarshallproject.org'
       css_selector = 'header'
 
-      get(:page_preview, params: { url: url, css_selector: css_selector })
+      get api_page_preview_path, params: { url: url, css_selector: css_selector }
 
       expect(response).to have_http_status(:success)
 
@@ -23,7 +23,7 @@ RSpec.describe ApiController do
   end
 
   it "can get the users" do
-    get(:users)
+    get api_users_path
     expect(JSON.parse(response.body).count).to be > 0
   end
 
@@ -34,7 +34,7 @@ RSpec.describe ApiController do
     @user = current_user
 
     # create the page
-    post(:embed_find_page, params: { url: url })
+    post embed_find_page_path, params: { url: url }
     expect(response).to have_http_status(:success)
     data = JSON.parse(response.body)
     expect(data['url']).to eq url
@@ -43,7 +43,7 @@ RSpec.describe ApiController do
     expect(page.user).to eq @user
 
     # update the page
-    post(:embed_update_page_selector, params: { id: page.id, css_selector: selector })
+    post embed_update_page_selector_path, params: { id: page.id, css_selector: selector }
     data = JSON.parse(response.body)
     expect(data['css_selector']).to eq selector
     expect(data['user_id']).to eq @user.id
