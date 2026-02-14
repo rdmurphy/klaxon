@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "users/edit", type: :view do
-  before(:each) do
+RSpec.describe "users/edit" do
+  before do
     @user = create(:user)
     @current_user = @user
   end

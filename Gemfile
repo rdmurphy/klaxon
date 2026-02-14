@@ -11,7 +11,7 @@ gem "dotenv"
 gem "jquery-rails"
 gem "bootsnap", require: false
 
-gem "puma", "~> 6.6"
+gem "puma", "~> 7.2"
 
 gem "simple_form", "~> 5.4"
 
@@ -22,7 +22,7 @@ gem "httparty"
 gem "diffy"
 gem "kramdown"
 
-gem "aws-sdk-sqs", "~> 1.99"
+gem "aws-sdk-sqs", "~> 1.111"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -31,7 +31,6 @@ group :development, :test do
   gem "guard-rspec", require: false
   gem "factory_bot_rails", "~> 6.5"
   gem "database_cleaner"
-  gem "sinatra"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
@@ -41,11 +40,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
 end
 
 group :test do
   gem "webmock"
-  gem "rails-controller-testing"
   gem "rspec-github", require: false
 end
 

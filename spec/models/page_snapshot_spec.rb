@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe PageSnapshot, type: :model do
+RSpec.describe PageSnapshot do
   it "must have a page" do
-    snapshot = PageSnapshot.new
+    snapshot = described_class.new
     expect(snapshot.valid?).to be false
   end
 
@@ -12,7 +12,7 @@ RSpec.describe PageSnapshot, type: :model do
   end
 
   it "is is invalid without a page" do
-    snapshot = PageSnapshot.create
+    snapshot = described_class.create
     expect(snapshot.valid?).to be false
   end
 

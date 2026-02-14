@@ -41,7 +41,7 @@ RSpec.configure do |config|
   end
 
   # Clear out all sent emails before each test
-  config.before(:each) { ActionMailer::Base.deliveries.clear }
+  config.before { ActionMailer::Base.deliveries.clear }
 
 
 # The settings below are suggested to provide a good initial experience

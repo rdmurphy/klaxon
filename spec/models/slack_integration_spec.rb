@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SlackIntegration, type: :model do
+RSpec.describe SlackIntegration do
   it "generates the correct payload" do
     stub_request(:post, /test-webhook.com/)
 
