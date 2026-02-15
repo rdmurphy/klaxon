@@ -5,6 +5,7 @@ Rails.application.config.to_prepare do
         host = AppSetting.default_host
         Rails.logger.info "[SUCCESS] Setting default_url_options[:host] = '#{host}'"
         Rails.application.routes.default_url_options[:host] = host
+        ActionMailer::Base.default_url_options[:host] = host
       end
     rescue ActiveRecord::NoDatabaseError
       Rails.logger.error "[ERROR] Failed to set default_host because: ActiveRecord::NoDatabaseError. If this is the first deploy, this is expected and will be fixed after the database is created."
