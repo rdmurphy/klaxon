@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.2.10"
+ruby "3.3.10"
 
 gem "rails", "~> 8.0.0"
 gem "pg", "~> 1.6"
@@ -26,7 +26,7 @@ gem "aws-sdk-sqs", "~> 1.111"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails"
   gem "guard-rspec", require: false
   gem "factory_bot_rails", "~> 6.5"
