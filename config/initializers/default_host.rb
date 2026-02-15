@@ -1,5 +1,5 @@
 Rails.application.config.to_prepare do
-  unless ENV["SECRET_KEY_BASE"] == "DUMMY"
+  unless ENV["SECRET_KEY_BASE_DUMMY"].present? || !Rails.env.production?
     begin
       if Rails.application.routes.default_url_options[:host].blank? and AppSetting.default_host_exists?
         host = AppSetting.default_host
