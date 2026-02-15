@@ -26,18 +26,20 @@ end
 module Klaxon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     # config.autoload_lib(ignore: %w[assets tasks])
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
     config.time_zone = ENV["TIME_ZONE"]
-
-    config.public_file_server.headers = { "Cache-Control" => "public, max-age=31536000" }
+    # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
     config.generators.system_tests = nil
