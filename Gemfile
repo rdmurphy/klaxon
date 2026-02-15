@@ -49,6 +49,8 @@ group :test do
   gem "rspec-github", require: false
 end
 
+gem "letter_opener_web"
+
 group :development do
   gem "dockerfile-rails", ">= 1.2"
   gem "letter_opener"

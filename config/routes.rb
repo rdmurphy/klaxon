@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if ENV["USE_LETTER_OPENER"] == "true"
+
   root "watching#feed"
 
   scope "api" do

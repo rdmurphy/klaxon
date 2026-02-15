@@ -67,15 +67,19 @@ Rails.application.configure do
   domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
   port      = ENV["#{provider}_PORT"] || "587"
 
-  config.action_mailer.smtp_settings = {
-    address: address,
-    port: port,
-    authentication: :plain,
-    user_name: user_name,
-    password: password,
-    domain: domain,
-    enable_starttls_auto: true
-  }
+  if ENV["USE_LETTER_OPENER"] == "true"
+    config.action_mailer.delivery_method = :letter_opener_web
+  else
+    config.action_mailer.smtp_settings = {
+      address: address,
+      port: port,
+      authentication: :plain,
+      user_name: user_name,
+      password: password,
+      domain: domain,
+      enable_starttls_auto: true
+    }
+  end
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
