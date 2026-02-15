@@ -25,10 +25,6 @@ Rails.application.configure do
   # Do not fall back to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
-  # yet still be able to expire them through the digest params.
-  config.assets.digest = true
-
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
@@ -45,7 +41,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
+  # Change to "debug" to log everything (including potentially personally-identifiable information!).
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
@@ -60,10 +56,26 @@ Rails.application.configure do
   # Replace the default in-process and non-durable queuing backend for Active Job.
   # config.active_job.queue_adapter = :resque
 
-
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+
+  provider  = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
+  address   = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
+  user_name = ENV["#{provider}_USERNAME"] || (provider == "SES" ? (ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"]) : nil)
+  password  = ENV["#{provider}_PASSWORD"] || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)
+  domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
+  port      = ENV["#{provider}_PORT"] || "587"
+
+  config.action_mailer.smtp_settings = {
+    address: address,
+    port: port,
+    authentication: :plain,
+    user_name: user_name,
+    password: password,
+    domain: domain,
+    enable_starttls_auto: true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -83,22 +95,4 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-
-  provider  = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
-  address   = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
-  # if you use SES as your SMTP provider, then your username and password are actually your AWS credentials.
-  user_name = ENV["#{provider}_USERNAME" || (provider == "SES" ? (ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"]) : nil)]  # for AWS SES, this is your access key id
-  password  = ENV["#{provider}_PASSWORD" || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)]  # for AWS SES, this is your secret access key
-  domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
-  port      = ENV["#{provider}_PORT"] || "587"
-
-  ActionMailer::Base.smtp_settings = {
-    address: address,
-    port: port,
-    authentication: :plain,
-    user_name: user_name,
-    password: password,
-    domain: domain,
-    enable_starttls_auto: true
-  }
 end
