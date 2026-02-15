@@ -64,6 +64,23 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  provider  = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
+  address   = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
+  user_name = ENV["#{provider}_USERNAME"] || (provider == "SES" ? (ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"]) : nil)
+  password  = ENV["#{provider}_PASSWORD"] || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)
+  domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
+  port      = ENV["#{provider}_PORT"] || "587"
+
+  config.action_mailer.smtp_settings = {
+    address: address,
+    port: port,
+    authentication: :plain,
+    user_name: user_name,
+    password: password,
+    domain: domain,
+    enable_starttls_auto: true
+  }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -82,22 +99,4 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-
-  provider  = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
-  address   = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
-  # if you use SES as your SMTP provider, then your username and password are actually your AWS credentials.
-  user_name = ENV["#{provider}_USERNAME" || (provider == "SES" ? (ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"]) : nil)]  # for AWS SES, this is your access key id
-  password  = ENV["#{provider}_PASSWORD" || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)]  # for AWS SES, this is your secret access key
-  domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
-  port      = ENV["#{provider}_PORT"] || "587"
-
-  ActionMailer::Base.smtp_settings = {
-    address: address,
-    port: port,
-    authentication: :plain,
-    user_name: user_name,
-    password: password,
-    domain: domain,
-    enable_starttls_auto: true
-  }
 end
