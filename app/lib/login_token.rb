@@ -1,6 +1,6 @@
 class LoginToken
   def self.secret_key
-    ENV["SECRET_KEY_BASE"]
+    Rails.application.secret_key_base
   end
 
   def self.create(user: nil)

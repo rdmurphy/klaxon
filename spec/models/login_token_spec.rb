@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe LoginToken do
   before do
-    ENV['SECRET_KEY_BASE'] = SecureRandom.hex
     @user = create(:user)
   end
 
@@ -13,7 +12,7 @@ RSpec.describe LoginToken do
 
   it "fails if the SECRET_KEY_BASE changes" do
     token = described_class.create(user: @user)
-    ENV['SECRET_KEY_BASE'] = SecureRandom.hex
+    allow(Rails.application).to receive(:secret_key_base).and_return(SecureRandom.hex)
     expect { described_class.decode(token: token) }.to raise_error(JWT::VerificationError)
   end
 
