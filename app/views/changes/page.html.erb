@@ -83,7 +83,7 @@ $(".diff li").each(function(i){
   $(this).html(contents);
 });
 var hash = window.location.hash.substr(1);
-$(".diff a[data-line="+hash+"]").addClass("klax-line-selected");
+if (hash) { $(".diff a[data-line="+hash+"]").addClass("klax-line-selected"); }
 $(".diff a").click(function(){
   $(".diff a").removeClass("klax-line-selected");
   $(this).addClass("klax-line-selected");

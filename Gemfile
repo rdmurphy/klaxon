@@ -3,12 +3,10 @@ ruby "3.4.8"
 
 gem "rails", "~> 8.1.2"
 gem "pg", "~> 1.6"
-gem "sprockets-rails"
+gem "propshaft"
 gem "dartsass-rails", "~> 0.5.1"
-gem "terser", "~> 1.2"
 
 gem "dotenv"
-gem "jquery-rails"
 gem "bootsnap", require: false
 
 gem "puma", "~> 7.2"

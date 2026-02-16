@@ -11,7 +11,6 @@ require "action_mailer/railtie"
 # require "action_mailbox/engine"
 # require "action_text/engine"
 require "action_view/railtie"
-require "sprockets/railtie"
 # require "action_cable/engine"
 # require "rails/test_unit/railtie"
 
@@ -40,6 +39,9 @@ module Klaxon
     #
     config.time_zone = ENV["TIME_ZONE"]
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Exclude stylesheets from the asset pipeline since we are using dartsass-rails to compile them.
+    config.assets.excluded_paths = [ Rails.root.join("app/assets/stylesheets") ]
 
     # Don't generate system test files.
     config.generators.system_tests = nil
