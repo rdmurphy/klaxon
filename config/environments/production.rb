@@ -54,21 +54,24 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  provider  = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
-  address   = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
+  provider = (ENV["SMTP_PROVIDER"] || "SENDGRID").to_s
+  address = ENV["#{provider}_ADDRESS"] || "smtp.sendgrid.net"
+  port = ENV.fetch("#{provider}_PORT", ENV["#{provider}_TLS"].present? ? "465" : "587").to_i
+  domain = ENV["#{provider}_DOMAIN"] || "heroku.com"
   user_name = ENV["#{provider}_USERNAME"] || (provider == "SES" ? (ENV["AWS_ACCESS_KEY_ID"] || ENV["ACCESS_KEY_ID"]) : nil)
-  password  = ENV["#{provider}_PASSWORD"] || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)
-  domain    = ENV["#{provider}_DOMAIN"] || "heroku.com"
-  port      = ENV["#{provider}_PORT"] || "587"
+  password = ENV["#{provider}_PASSWORD"] || (provider == "SES" ? (ENV["AWS_SECRET_ACCESS_KEY"] || ENV["SECRET_ACCESS_KEY"]) : nil)
+  authentication = ENV.fetch("#{provider}_AUTHENTICATION", "plain").to_sym
+  tls = ENV["#{provider}_TLS"].present?
 
   config.action_mailer.smtp_settings = {
     address: address,
     port: port,
-    authentication: :plain,
+    domain: domain,
     user_name: user_name,
     password: password,
-    domain: domain,
-    enable_starttls_auto: true
+    authentication: authentication,
+    tls: tls,
+    enable_starttls_auto: !tls
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
