@@ -34,13 +34,13 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
-    @users = sorted_users
+    @users = sorted_users(@page)
     @slack_integrations = SlackIntegration.all
   end
 
   # GET /pages/1/edit
   def edit
-    @users = sorted_users
+    @users = sorted_users(@page)
     @slack_integrations = SlackIntegration.all
   end
 
@@ -77,8 +77,9 @@ class PagesController < ApplicationController
       @page = Page.find(params[:id])
     end
 
-    def sorted_users
-      User.all.sort_by { |u| [ u.id == current_user.id ? 0 : 1, u.display_name.downcase ] }
+    def sorted_users(page)
+      subscribed_user_ids = Subscription.where(watching: page, watcher_type: "User").pluck(:watcher_id).to_set
+      User.all.sort_by { |u| [ u.id == current_user.id ? 0 : 1, subscribed_user_ids.include?(u.id) ? 0 : 1, u.display_name.downcase ] }
     end
 
     # Only allow a trusted parameter "white list" through.
