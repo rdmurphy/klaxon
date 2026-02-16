@@ -34,13 +34,13 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
-    @users = User.all
+    @users = sorted_users
     @slack_integrations = SlackIntegration.all
   end
 
   # GET /pages/1/edit
   def edit
-    @users = User.all
+    @users = sorted_users
     @slack_integrations = SlackIntegration.all
   end
 
@@ -75,6 +75,10 @@ class PagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = Page.find(params[:id])
+    end
+
+    def sorted_users
+      User.all.sort_by { |u| [ u.id == current_user.id ? 0 : 1, u.display_name.downcase ] }
     end
 
     # Only allow a trusted parameter "white list" through.
