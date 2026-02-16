@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "API" do
   before {
-    WebMock.allow_net_connect!
     login
   }
 
@@ -10,6 +9,12 @@ RSpec.describe "API" do
     it "can query the tmp homepage" do
       url = 'https://www.themarshallproject.org'
       css_selector = 'header'
+
+      stub_request(:get, "https://www.themarshallproject.org/").to_return(
+        status: 200,
+        body: '<html><body><header><a href="/about">About</a></header></body></html>',
+        headers: { 'Content-Type' => 'text/html' }
+      )
 
       get api_page_preview_path, params: { url: url, css_selector: css_selector }
 
