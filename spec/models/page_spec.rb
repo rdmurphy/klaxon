@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Page do
-  before :all do
+  before do
     stub_request(:get, "https://www.themarshallproject.org/").
          with(headers: { 'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'www.themarshallproject.org', 'User-Agent'=>'Ruby' }).
          to_return(status: 200, body: "<body>lorem ipsum lorem ipsum lorem ipsum</body>", headers: {})
