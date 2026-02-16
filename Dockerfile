@@ -12,7 +12,7 @@ WORKDIR /rails
 RUN gem update --system --no-document && \
     gem install -N bundler
 
-# Install base packages needed to install nodejs
+# Install base packages
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 postgresql-client && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
@@ -23,13 +23,6 @@ ENV BUNDLE_DEPLOYMENT="1" \
     BUNDLE_WITHOUT="development:test" \
     RAILS_ENV="production"
 
-# Install Node.js
-ARG NODE_VERSION=24.13.1
-ENV PATH=/usr/local/node/bin:$PATH
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    rm -rf /tmp/node-build-master
-
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -38,9 +31,6 @@ FROM base AS build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential libffi-dev libpq-dev libyaml-dev && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
-
-# Build options
-ENV PATH="/usr/local/node/bin:$PATH"
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
