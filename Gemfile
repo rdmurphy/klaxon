@@ -2,23 +2,33 @@ source "https://rubygems.org"
 ruby "3.4.8"
 
 gem "rails", "~> 8.1.2"
-gem "pg", "~> 1.6"
-gem "propshaft"
-gem "dartsass-rails", "~> 0.5.1"
 
-gem "dotenv"
+# Framework
 gem "bootsnap", require: false
-
 gem "puma", "~> 7.2"
 
+# Configuration
+gem "dotenv"
+
+# Database
+gem "pg", "~> 1.6"
+
+# Assets
+gem "dartsass-rails", "~> 0.5.1"
+gem "propshaft"
+
+# Authentication
+gem "jwt"
+
+# Forms
 gem "simple_form", "~> 5.4"
 
-gem "jwt"
-gem "premailer-rails"
-
+# Content processing
 gem "diffy"
 gem "kramdown"
+gem "premailer-rails"
 
+# Integrations
 gem "aws-sdk-sqs", "~> 1.111"
 
 group :development, :test do
