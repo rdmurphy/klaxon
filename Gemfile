@@ -15,7 +15,6 @@ gem "simple_form", "~> 5.4"
 
 gem "jwt"
 gem "premailer-rails"
-gem "httparty"
 
 gem "diffy"
 gem "kramdown"
@@ -26,9 +25,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "rspec-rails"
-  gem "guard-rspec", require: false
   gem "factory_bot_rails", "~> 6.5"
-  gem "database_cleaner"
 
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
