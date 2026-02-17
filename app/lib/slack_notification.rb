@@ -6,9 +6,10 @@ class SlackNotification
     end
 
     json = payload.to_json
-    request = HTTParty.post(url, body: json, headers: { "Content-Type" => "application/json" })
-    if request.code == 200
-      request.body
+    uri = URI.parse(url)
+    response = Net::HTTP.post(uri, json, "Content-Type" => "application/json")
+    if response.code == "200"
+      response.body
     else
       puts "Error sending webhook to url=#{url} for payload=#{payload.to_json}"
 

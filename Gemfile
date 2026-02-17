@@ -15,7 +15,6 @@ gem "simple_form", "~> 5.4"
 
 gem "jwt"
 gem "premailer-rails"
-gem "httparty"
 
 gem "diffy"
 gem "kramdown"
