@@ -36,13 +36,16 @@ class Change < ApplicationRecord
   end
 
   def self.check
-    Page.all.each do |page|
+    Page.find_each do |page|
       # if we have multiple snapshots, only notify for the change between the last two
 
       current = page.page_snapshots.order("created_at DESC").first
+      previous = current&.previous
+
+      next if previous.nil?
 
       Change.where(
-        before: current&.previous, # this can pass nil, but it will be throw an error if so
+        before: previous,
         after:  current
       ).first_or_create
     end
