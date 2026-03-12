@@ -8,7 +8,7 @@ RSpec.describe "Watching" do
       it "shows the bookmarklet onboarding" do
         get root_path
         expect(response).to have_http_status(:success)
-        expect(response.body).to include("bookmarklet")
+        expect(response.body).to include("Watch Your First Item")
       end
     end
 
