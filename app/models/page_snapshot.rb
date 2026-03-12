@@ -8,20 +8,15 @@ class PageSnapshot < ApplicationRecord
   end
 
   def document
-    Nokogiri::HTML(html)
+    WatchedContent.document(html: html)
   end
 
   def match_text
-    @match = document.css(self.page.css_selector.strip)
-
-    if self.page.exclude_selector.present?
-      # Set the content of the exclude selector to the empty string
-      @match.css(self.page.exclude_selector.strip).each do |node|
-        node.content = ""
-      end
-    end
-
-    @match.text
+    WatchedContent.match_text(
+      html: html,
+      css_selector: self.page.css_selector,
+      exclude_selector: self.page.exclude_selector
+    )
   end
 
   def display_hash

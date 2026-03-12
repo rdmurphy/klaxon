@@ -21,36 +21,23 @@ class Page < ApplicationRecord
   end
 
   def html
-    if self.url.blank?
-      return ""
-    end
-
-    @html ||= begin
-      logger.info "downloading url=#{self.url} for page.id=#{self.id}"
-      dirty = Net::HTTP.get(URI(self.url.to_s))
-      SafeString.coerce(dirty)
-    end
+    @html ||= WatchedContent.download(url: self.url, page_id: self.id)
   end
 
   def document
-    Nokogiri::HTML(html)
+    WatchedContent.document(html: html)
   end
 
   def match_text
-    @match = document.css(self.css_selector.strip)
-
-    if self.exclude_selector.present?
-      # Set the content of the exclude selector to the empty string
-      @match.css(self.exclude_selector.strip).each do |node|
-        node.content = ""
-      end
-    end
-
-    @match.text
+    WatchedContent.match_text(
+      html: html,
+      css_selector: self.css_selector,
+      exclude_selector: self.exclude_selector
+    )
   end
 
   def match_html
-    document.css(self.css_selector.strip).to_html
+    WatchedContent.match_html(html: html, css_selector: self.css_selector)
   end
 
   def sha2_hash
