@@ -1,8 +1,8 @@
 class PageSnapshotsController < ApplicationController
-  before_action :set_snapshot, only: [ :html, :raw_html, :download ]
+  before_action :set_snapshot, only: [ :show, :raw_html, :download ]
   before_action :authorize
 
-  def html
+  def show
   end
 
   def raw_html

@@ -24,7 +24,7 @@ class PagesController < ApplicationController
 
   # GET /pages
   def index
-    @pages = Page.includes(:user).order("created_at DESC")
+    @pages = Page.includes(:user, :page_snapshots_without_html).order("created_at DESC")
   end
 
   # GET /pages/1

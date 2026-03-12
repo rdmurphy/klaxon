@@ -1,4 +1,4 @@
-<% if @changes.empty? %>
+<% if @feed_items.empty? %>
 
 <%= render partial: 'layouts/bookmarklet' %>
 
@@ -13,7 +13,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-      <p class="lead">Below is a quick look at everything Klaxon is monitoring for your organization, even items you don’t subscribe to. Each line represents a change to an item, known as a “snapshot.” </p>
+      <p class="lead">Below is a quick look at everything Klaxon is monitoring for your organization, even items you don't subscribe to. Each line represents a newly watched page or a change to an existing one, known as a "snapshot."</p>
       </div>
       <div class="col-md-3">
 
@@ -27,8 +27,12 @@
         <div class="col-md-9">
           <h4 style="margin-top: 0;" class="klax-spacer-md">The Latest</h4>
 
-          <% @changes.each do |change| %>
-            <%= render partial: 'watching/feed_change', locals: { change: change } %>
+          <% @feed_items.each do |item| %>
+            <% if item.is_a?(Change) %>
+              <%= render partial: 'watching/feed_change', locals: { change: item } %>
+            <% else %>
+              <%= render partial: 'watching/feed_snapshot', locals: { snapshot: item } %>
+            <% end %>
           <% end %>
 
         </div>

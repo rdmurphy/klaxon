@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>Latest Captured HTML</h1>
+        <h1>Latest Captured Snapshot</h1>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <p class="lead">Below is a version of <b><%= @snapshot.page&.name || @snapshot.page&.url %></b> downloaded on <%= @snapshot.created_at.strftime("%A, %B %d, %Y at %l:%M %P %z off UTC") %>. </p>
-        <p class="lead">It may take a moment for the captured page to load. The page may look odd because we're not capturing the CSS as well. Sorry.</p>
+        <p class="lead">It may take a moment for the HTML to load. It may look odd because we're not capturing the CSS as well. Sorry.</p>
       </div>
 
       <div class="col-md-3">
@@ -28,7 +28,30 @@
 </div>
 
 <div class="klax-section klax-spacer-lg">
+  <div class="container">
+    <div class="row klax-spacer-md">
+      <div class="col-md-12">
+        <h4>Extracted Text</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-muted">
+          CSS selector: <code><%= @snapshot.page&.css_selector %></code>
+        </p>
+        <pre><%= @snapshot.match_text %></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="klax-section klax-spacer-lg">
   <div class="container klax-spacer-md">
+    <div class="row klax-spacer-md">
+      <div class="col-md-12">
+        <h4>Captured HTML</h4>
+      </div>
+    </div>
     <div class="row klax-spacer-md">
       <div class="col-md-12" style="border:solid;"><iframe style="height: 800px; width: 100%" src="<%= raw_page_snapshot_html_path(@snapshot) %>">
 
