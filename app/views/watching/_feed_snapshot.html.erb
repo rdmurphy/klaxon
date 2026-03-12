@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-6">
         <p class="lead">
-          <%= link_to show_page_snapshot_html_path(snapshot) do %>
+          <%= link_to page_snapshot_path(snapshot) do %>
             <%= snapshot.page.name || truncate(snapshot.page.url) %> started being watched
           <% end %>
         </p>
