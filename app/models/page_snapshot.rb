@@ -1,5 +1,9 @@
 class PageSnapshot < ApplicationRecord
   belongs_to :page
+  has_many :changes_as_before, class_name: "Change", as: :before
+  has_many :changes_as_after, class_name: "Change", as: :after
+
+  scope :without_changes, -> { where.missing(:changes_as_before).where.missing(:changes_as_after) }
 
   validates :sha2_hash, presence: true
 
